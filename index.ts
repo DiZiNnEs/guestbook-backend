@@ -7,6 +7,7 @@ const app: Application = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+// TODO: убрать на роутеры, хэндлеры и т.д
 app.get('/api/v1/comments', async (req: Request, res: Response) => {
     const comments = await getComments()
     return res.json(comments)

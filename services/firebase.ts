@@ -1,11 +1,7 @@
 import admin from 'firebase-admin'
 import {IComments} from "./interfaces";
+import {firebaseConfig} from "../cfg";
 
-const serviceAccount = require("../kindom-of-dizzines-firebase-adminsdk-yy2g6-2b27e47d78.json");
-const firebaseConfig = {
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://kindom-of-dizzines-default-rtdb.firebaseio.com'
-};
 
 const firebaseApp = admin.initializeApp(firebaseConfig)
 

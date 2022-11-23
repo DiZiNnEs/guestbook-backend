@@ -1,4 +1,5 @@
 import {Credential} from "firebase-admin/lib/app/credential";
+import admin from "firebase-admin";
 
 require('dotenv').config()
 
@@ -14,3 +15,10 @@ export const firebaseCredential: any = {
     auth_provider_x509_cert_url:  process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
     client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL
 }
+
+const serviceAccount = require("./kindom-of-dizzines-firebase-adminsdk-yy2g6-2b27e47d78.json");
+export const firebaseConfig = {
+    // TODO: заменить это
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: process.env.FIREBASE_DATABASE_URL
+};
