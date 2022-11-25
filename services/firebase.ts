@@ -8,12 +8,14 @@ const firebaseApp = admin.initializeApp(firebaseConfig)
 export async function writeComments(body: any): Promise<void> {
     await firebaseApp.database().ref('comments/').push({
         username: body.username,
-        text: body.comments
+        text: body.comments,
+        createdAt: Date.now()
     })
 }
 
 export async function getComments(): Promise<IComments[]> {
     const commentsRef = firebaseApp.database().ref('comments/')
-    const comments = (await commentsRef.once('value')).val()
-    return Object.values(comments)
+    const data = (await commentsRef.once('value')).val()
+    const comments: IComments[] = Object.values(data)
+    return comments.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1)
 }
