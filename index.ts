@@ -7,7 +7,7 @@ const app: Application = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors({origin: ['http://localhost:3000']}))
+app.use(cors({origin: ['http://localhost:3000', '*']}))
 
 // TODO: убрать на роутеры, хэндлеры и т.д
 app.get('/api/v1/comments', async (req: Request, res: Response) => {
