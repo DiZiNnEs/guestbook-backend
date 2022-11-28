@@ -1,27 +1,22 @@
-import express, {Application, Request, Response} from 'express';
+import express, { Application } from 'express'
 import cors from 'cors'
-import bodyParser from 'body-parser';
-import {getComments, writeComments} from './services/firebase';
+import bodyParser from 'body-parser'
 
-const app: Application = express();
+import { allowCors } from './cfg'
+import router from './src/routers/router'
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors({origin: ['http://localhost:3000', '*']}))
+const app: Application = express()
 
-// TODO: убрать на роутеры, хэндлеры и т.д
-app.get('/api/v1/comments', async (req: Request, res: Response) => {
-    const comments = await getComments()
-    return res.json(comments)
-})
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(
+    cors({
+        origin: allowCors,
+    })
+)
+app.use('/api/v1/', router)
 
-app.post('/api/v1/comments', async (req: Request, res: Response) => {
-    const body = req.body
-    await writeComments(body)
-    res.send(200)
-})
-
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`)

@@ -3,3 +3,8 @@ export interface IComments {
     username: string
     createdAt: number
 }
+
+export interface ICommentsPost {
+    username: string
+    comments: string
+}
