@@ -5,13 +5,14 @@ import { firebaseConfig } from '../../cfg'
 const firebaseApp = admin.initializeApp(firebaseConfig)
 
 export async function writeUserComments(body: any): Promise<any> {
+    const now = Date.now()
     await firebaseApp.database().ref('comments/').push({
         username: body.username,
         text: body.comments,
-        createdAt: Date.now(),
+        createdAt: now,
     })
 
-    return { username: body.username, comments: body.comments }
+    return { username: body.username, text: body.comments, createdAt: now }
 }
 
 export async function getUsersComments(): Promise<IComments[]> {
