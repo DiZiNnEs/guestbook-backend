@@ -28,4 +28,5 @@ export const allowCors = [
     'http://localhost:3000',
     'http://213.108.4.26:3000',
     'http://213.108.4.26:8000',
+    'http://213.108.4.26:8080',
 ]
