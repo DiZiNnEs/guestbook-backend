@@ -9,5 +9,7 @@
 ```
 git clone https://github.com/DiZiNnEs/guestbook-backend
 npm i
-npm run dev
+npm install pm2 -g
+npm run build
+pm2 node dist/index.js
 ```
