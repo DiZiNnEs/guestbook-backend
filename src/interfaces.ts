@@ -1,10 +1,10 @@
 export interface IComments {
-    text: string,
+    comment: string,
     username: string
     createdAt: number
 }
 
 export interface ICommentsPost {
     username: string
-    comments: string
+    comment: string
 }

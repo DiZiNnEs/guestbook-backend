@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.route('/comments').post(
     body('username').notEmpty().isString().isLength({ min: 1 }),
-    body('comments').notEmpty().isString().isLength({ min: 1 }),
+    body('comment').notEmpty().isString().isLength({ min: 1 }),
 
     writeComments
 )
